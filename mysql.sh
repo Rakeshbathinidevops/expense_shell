@@ -12,10 +12,10 @@ N="\e[0m"
 VALIDATE(){
     if [ $1 -ne 0]
     then
-        echo -e "$2 is $R FAILED $N"
+        echo -e "$2 is $G FAILED $N"
         exit 1
     else    
-        echo -e "$2 is $R SUCCESSFUL $N"
+        echo -e "$2 is $G SUCCESSFUL $N"
 fi
 }
 
@@ -29,15 +29,19 @@ fi
 
 dnf install mysql-server -y 2>>$LOGFILE
 VALIDATE $? "installation of mysqlserver"
-
 systemctl start mysqld 2>>$LOGFILE
 VALIDATE $? "Starting mysqlserver"
-
 systemctl enable mysqld 2>>$LOGFILE
 VALIDATE $? "enabling mysqlserver"
+mysql -h 172.31.43.26 -uroot -pExpenseApp@1 -e 'show databases;' 2>>$LOGFILE
+if [ $? -ne 0 ]
+then
+    mysql_secure_installation --set-root-pass ExpenseApp@1 2>>$LOGFILE
+    VALIDATE $? "my root password setup"
+else
+    echo -e "Root password already set $Y SKIPPIBG $N"
+fi
 
-mysql_secure_installation --set-root-pass ExpenseApp@1 2>>$LOGFILE
-VALIDATE $? "my root password setup"
 
 
 
