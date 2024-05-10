@@ -43,7 +43,7 @@ else
     echo "User already existed"
 fi
 
-makedir -p /app 2>>$LOGFILE
+mkdir -p /app 2>>$LOGFILE
 VALIDATE $? "creating app dir"
 
 curl -o /tmp/backend.zip https://expense-builds.s3.us-east-1.amazonaws.com/expense-backend-v2.zip 2>>$LOGFILE
