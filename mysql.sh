@@ -33,7 +33,7 @@ systemctl start mysqld 2>>$LOGFILE
 VALIDATE $? "Starting mysqlserver"
 systemctl enable mysqld 2>>$LOGFILE
 VALIDATE $? "enabling mysqlserver"
-mysql -h 172.31.43.26 -uroot -pExpenseApp@1 -e 'show databases;' 2>>$LOGFILE
+mysql -h 172.31.42.103 -uroot -pExpenseApp@1 -e 'show databases;' 2>>$LOGFILE
 if [ $? -ne 0 ]
 then
     mysql_secure_installation --set-root-pass ExpenseApp@1 2>>$LOGFILE
