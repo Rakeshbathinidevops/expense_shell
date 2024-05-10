@@ -10,7 +10,7 @@ Y="\e[33m"
 N="\e[0m"
 
 VALIDATE(){
-    if [ $1 -ne 0]
+    if [ $1 -ne 0 ]
     then
         echo -e "$2 is $G FAILED $N"
         exit 1
@@ -19,7 +19,7 @@ VALIDATE(){
 fi
 }
 
-if [ $USERID -ne 0]
+if [ $USERID -ne 0 ]
 then
     echo "You are not a root user"
     exit 1
