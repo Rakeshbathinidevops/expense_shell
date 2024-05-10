@@ -40,7 +40,7 @@ then
     useradd expense 2>>$LOGFILE
     VALIDATE $? "creating user"
 else    
-    exho "User already existed"
+    echo "User already existed"
 fi
 
 makedir -p /app 2>>$LOGFILE
